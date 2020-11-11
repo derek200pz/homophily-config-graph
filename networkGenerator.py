@@ -49,7 +49,7 @@ def generate_homophily_configuration(n, features=False, homophily=False, passes=
                 relevant_edges = set([edge for node in featlists[f"{feat}_1"] for edge in list(G.edges(node))])      #This is nonsense. Python is whack for this double list comprehension.
                 internal_edges = set([edge for edge in relevant_edges if edge[1] in featlists[f"{feat}_1"]])
                 external_edges = set([edge for edge in relevant_edges if edge not in internal_edges])
-                correction_factor = 0.5/(1-features[feat]) #This correction factor corrects for two things: 1: that inner edges are counted twice, causing the rewirings to overshoot for low p values, and 2: that the p value affects how likely it is that an edge is redundantly added (line 70, "newEdge = random.sample(node_list, 2)")
+                correction_factor = 0.5/(1-features[feat]) #This correction factor corrects for two things: 1: that inner edges are counted twice, causing the rewirings to overshoot, and 2: that the p value affects how likely it is that an edge is redundantly added (line 70, "newEdge = random.sample(node_list, 2)")
                 rewire_count = int((homophily[feat]*len(relevant_edges)*features[feat] - len(internal_edges))*correction_factor)
 
                 # print(f"expected internal edges given homophily: {homophily[feat]*len(relevant_edges)*features[feat]}")
