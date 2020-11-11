@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!*.py
+
+# But do ignore this file...
+/.vscode/.ropeproject/config.py
